@@ -36,6 +36,11 @@ html{
 ::-webkit-scrollbar-thumb:hover {
   background: #ccc;
 }
+.gradient-text {
+  background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 .order-grid{
   grid-template-columns: 0.5fr 3fr 1fr 1fr 1fr 1fr;
@@ -43,15 +48,15 @@ html{
 }
 @layer base {
   
-  .active-link{
+ /* .active-link{
     @apply text-secondary ;
-  } 
+  }*/ 
   .active-color {
     @apply relative after:w-full after:h-[2px] after:bg-black after:absolute after:-bottom-1 after:right-0 after:left-0
   }
-  /*.active-link{
-    @apply text-secondary  flex-1 after:w-full after:h-[1px] after:bg-secondary after:absolute after:-bottom-3 after:right-0;
-  }*/
+  .active-link{
+    @apply text-secondary  flex-1 after:h-[1px] after:bg-secondary after:absolute after:-bottom-3 after:right-0;
+  }
   .active-ctg{
     @apply border-8 border-solid border-black p-1 ;
   }

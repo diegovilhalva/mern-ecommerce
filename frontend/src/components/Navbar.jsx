@@ -4,7 +4,7 @@ import { MdCategory, MdContacts, MdHomeFilled, MdShop2 } from "react-icons/md"
 const Navbar = ({containerStyles}) => {
     const [isActive,setIsActive] = useState('home')
   return (
-    <nav className={`${containerStyles}`}>
+    <nav className={containerStyles}>
         <a href={'#home'} onClick={() => setIsActive('home')} className={isActive === 'home' ? 'active-link' :''}>
             <div className="flexCenter gap-x-1">
                 <MdHomeFilled/>

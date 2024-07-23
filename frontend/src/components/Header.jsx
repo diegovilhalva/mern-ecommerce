@@ -1,19 +1,20 @@
 import { Link } from "react-router-dom"
 import logo from "../assets/logo.svg"
 import Navbar from "./Navbar"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { MdClose, MdMenu } from "react-icons/md"
 import { FaBasketShopping } from "react-icons/fa6"
+import { ShopContext } from "../context/ShopContext"
 const Header = () => {
 
     const [menuOpened, setMenuOpened] = useState(false)
     const toggleMenu = () => setMenuOpened(!menuOpened)
-
+    const { cartItems } = useContext(ShopContext)
     return (
         <header className="fixed right-0 left-0 mx-auto z-10">
             <div className="max-padd-container bg-white">
                 <div className="flexBetween py-4 max-xs:px-2">
-                    <div className="flexBetween gap-x-20">
+                    <div className="flexCenter gap-x-20">
                         <Link to={'/'} className="bold-24">
                             <img src={logo} alt="logo image" height={77} width={77} />
                         </Link>
@@ -28,10 +29,11 @@ const Header = () => {
                         )}
 
                         <div className="flexBetween gap-x-2 sm:gap-x-5">
-
                             <Link className="flex">
                                 <FaBasketShopping className="text-[22px]" />
-                                <span className="relative flexCenter w-2 h-2 rounded-full bg-secondary text-white medium-14 -top-1" ></span>
+                                <span className="relative flexCenter w-2 h-2 rounded-full bg-secondary text-white medium-14 -top-1" >
+
+                                </span>
                             </Link>
                             <button className="btn-outline rounded-full">
                                 Login
