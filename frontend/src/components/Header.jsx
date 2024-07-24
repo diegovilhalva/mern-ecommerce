@@ -5,7 +5,7 @@ import { useContext, useState } from "react"
 import { MdClose, MdMenu } from "react-icons/md"
 import { FaBasketShopping } from "react-icons/fa6"
 import { ShopContext } from "../context/ShopContext"
-const Header = () => {
+const Header = ({setShowLogin}) => {
 
     const [menuOpened, setMenuOpened] = useState(false)
     const toggleMenu = () => setMenuOpened(!menuOpened)
@@ -29,13 +29,13 @@ const Header = () => {
                         )}
 
                         <div className="flexBetween gap-x-2 sm:gap-x-5">
-                            <Link className="flex">
+                            <Link to={'/cart'} className="flex">
                                 <FaBasketShopping className="text-[22px]" />
                                 <span className="relative flexCenter w-2 h-2 rounded-full bg-secondary text-white medium-14 -top-1" >
 
                                 </span>
                             </Link>
-                            <button className="btn-outline rounded-full">
+                            <button onClick={() => setShowLogin(prev => !prev)} className="btn-outline rounded-full">
                                 Login
                             </button>
                         </div>

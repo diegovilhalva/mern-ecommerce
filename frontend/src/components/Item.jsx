@@ -11,7 +11,7 @@ const Item = ({ product }) => {
             <div className="relative group">
                 <img src={product.image} alt="product image" className="rounded-tl-2xl rounded-tr-2xl" />
                 <div className="absolute right-3 bottom-3 flexCenter gap-x-2">
-                    <Link to={`/product/${product._id}`} className="bg-white h-8 w-8 p-2 rounded-full shadow-inner cursor-pointer transition-all duration-500">
+                    <Link to={`/product/${product._id}`} className="bg-white h-8 w-8 p-2 rounded-full shadow-inner cursor-pointer opacity-0  group-hover:opacity-100 transition-all duration-500">
                         <FaUpRightAndDownLeftFromCenter />
                     </Link>
                     {!cartItems[product._id] ? (

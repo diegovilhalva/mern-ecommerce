@@ -6,20 +6,24 @@ import Cart from "./pages/Cart"
 import Order from "./components/Order"
 import Verify from "./pages/Verify"
 import MyOrders from "./pages/MyOrders"
+import { useState } from "react"
+import LoginPopup from "./components/LoginPopup"
 
 const App = () => {
+  const [showLogin, setShowLogin] = useState(false)
   return (
     <BrowserRouter>
-      <Header/>
+    {showLogin ? <LoginPopup setShowLogin={setShowLogin}/> : <></>}
+      <Header setShowLogin={setShowLogin} />
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/product" element={<Product/>}>
-          <Route path=":productId" element={<Product/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/product" element={<Product />}>
+          <Route path=":productId" element={<Product />} />
         </Route>
-        <Route path="/cart" element={<Cart/>} />
-        <Route path="/order" element={<Order/>} />
-        <Route path="/verify" element={<Verify/>} />
-        <Route path="/myorders" element={<MyOrders/>}/>
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/order" element={<Order />} />
+        <Route path="/verify" element={<Verify />} />
+        <Route path="/myorders" element={<MyOrders />} />
       </Routes>
     </BrowserRouter>
   )
