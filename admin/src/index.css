@@ -51,12 +51,11 @@ html{
  /* .active-link{
     @apply text-secondary ;
   }*/ 
+  .active-Link { @apply flexCenter gap-x-2 cursor-pointer max-w-60 h-10 border border-slate-900/15 !bg-primary}
   .active-color {
     @apply relative after:w-full after:h-[2px] after:bg-black after:absolute after:-bottom-1 after:right-0 after:left-0
   }
-  .active-link{
-    @apply text-secondary  flex-1 after:h-[1px] after:bg-secondary after:absolute after:-bottom-3 after:right-0;
-  }
+  
   .active-ctg{
     @apply border-8 border-solid border-black p-1 ;
   }
