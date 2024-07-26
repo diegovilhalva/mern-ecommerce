@@ -11,6 +11,8 @@ export const addProduct = async (req, res) => {
     })
 
 
+
+
     try {
         await product.save()
         res.status(201).json({ success: true, message: "Product Added" })
@@ -35,8 +37,11 @@ export const listProducts = async (req, res) => {
 export const removeProduct = async (req,res) => {
     try {
         const product = await Product.findById(req.body.id)
+        if (!product) {
+           return res.status(404).json({success:false,message:"Error product not found!"})
+        }
         fs.unlink(`uploads/${product.image}`,() => {})
-
+            
         await Product.findByIdAndDelete(req.body.id)
 
         res.status(200).json({success:true,message:"Product deleted successfully!"})
