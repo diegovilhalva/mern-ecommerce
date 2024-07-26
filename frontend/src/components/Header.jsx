@@ -1,15 +1,23 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import logo from "../assets/logo.svg"
 import Navbar from "./Navbar"
 import { useContext, useState } from "react"
 import { MdClose, MdMenu } from "react-icons/md"
-import { FaBasketShopping } from "react-icons/fa6"
+import { FaBasketShopping, FaCircleUser } from "react-icons/fa6"
+import { FiPackage } from "react-icons/fi"
+import { TbLogout } from "react-icons/tb"
 import { ShopContext } from "../context/ShopContext"
 const Header = ({setShowLogin}) => {
 
     const [menuOpened, setMenuOpened] = useState(false)
     const toggleMenu = () => setMenuOpened(!menuOpened)
-    const { getTotalCartAmount } = useContext(ShopContext)
+    const navigate = useNavigate()
+    const { getTotalCartAmount,token,setToken } = useContext(ShopContext)
+    const logout = () => {
+        localStorage.removeItem("token")
+        setToken("")
+        navigate("/")
+    }
     return (
         <header className="fixed right-0 left-0 mx-auto z-10">
             <div className="max-padd-container bg-white">
@@ -35,9 +43,25 @@ const Header = ({setShowLogin}) => {
                                     
                                 </span>
                             </Link>
-                            <button onClick={() => setShowLogin(prev => !prev)} className="btn-outline rounded-full">
+                           { 
+                              !token ?( <button onClick={() => setShowLogin(prev => !prev)} className="btn-outline rounded-full">
                                 Login
-                            </button>
+                            </button>) : (<div className="group relative">
+                                <FaCircleUser className="text-2xl "/>
+                                <ul className="bg-primary shadow-sm p-3 w-24 ring-1 ring-slate-900/15 rounded absolute right-0 group-hover:flex flex-col hidden">
+                                    <li className="flexCenter gap-x-2 cursor-pointer" onClick={() => navigate('/myorders')}> 
+                                        <FiPackage className="text-[19px]"/>
+                                        <p>Orders</p>
+                                    </li>
+                                    <hr className="my-2" />
+                                    <li className="flexCenter gap-x-2 cursor-pointer"
+                                    onClick={logout}> 
+                                        <TbLogout className="text-[19px]"/>
+                                        <p>Logout</p>
+                                    </li>
+
+                                </ul>
+                            </div>)}
                         </div>
                     </div>
                 </div>

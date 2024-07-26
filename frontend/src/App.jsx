@@ -6,6 +6,8 @@ import Cart from "./pages/Cart"
 import Order from "./components/Order"
 import Verify from "./pages/Verify"
 import MyOrders from "./pages/MyOrders"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react"
 import LoginPopup from "./components/LoginPopup"
 
@@ -13,7 +15,8 @@ const App = () => {
   const [showLogin, setShowLogin] = useState(false)
   return (
     <BrowserRouter>
-    {showLogin ? <LoginPopup setShowLogin={setShowLogin}/> : <></>}
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+      {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
       <Header setShowLogin={setShowLogin} />
       <Routes>
         <Route path="/" element={<Home />} />
