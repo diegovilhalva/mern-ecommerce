@@ -1,4 +1,5 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import {useNavigate} from "react-router-dom"
 import { ShopContext } from "../context/ShopContext"
 import axios from "axios"
 import { toast } from "react-toastify"
@@ -6,6 +7,7 @@ import { toast } from "react-toastify"
 
 
 const Order = () => {
+  const navigate = useNavigate()
   const { getTotalCartAmount, all_products, cartItems, url,token } = useContext(ShopContext)
   const [data, setData] = useState({
     firstName: "",
@@ -51,6 +53,14 @@ const Order = () => {
       }
   }
 
+  useEffect(() => {
+    if (!token) {
+      navigate('/cart')
+    }else if(getTotalCartAmount() === 0){
+      navigate('/cart')
+    }
+  },[])
+
 
   return (
     <section className="max-padd-container py-28  xl:py-32">
@@ -94,7 +104,7 @@ const Order = () => {
                 <h4 className="bold-18" >${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</h4>
               </div>
             </div>
-            <button type="submit" className="btn-secondary w-52 rounded" >Proceed to Checkout</button>
+            <button type="submit"  className="btn-secondary w-52 rounded" >Proceed to Checkout</button>
           </div>
         </div>
       </form>
