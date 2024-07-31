@@ -91,3 +91,14 @@ export const listOrders = async (req,res) => {
         res.status(500).json({success:false,message:"Error"})    
     }
 }
+
+
+export const updateStatus = async  (req,res) => {
+    try {
+       await Order.findByIdAndUpdate(req.body.orderId,{status:req.body.status}) 
+       res.json({success:true,message:"Status Updated"})
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:"Error"})
+    }
+}
